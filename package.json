@@ -1,0 +1,19 @@
+{
+  "name": "ckin",
+  "version": "0.0.1",
+  "description": "Custom HTML5 Video Player Skins.",
+  "main": "./dist/js/ckin.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunzaboy/ckin.git"
+  },
+  "author": "Aslam Shah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hunzaboy/ckin/issues"
+  },
+  "homepage": "https://github.com/hunzaboy/ckin#readme"
+}
