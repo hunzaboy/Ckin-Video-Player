@@ -6,3 +6,6 @@ Development in Progress...
 If you find any bug, please report.
 
 P.S "This is my first github project"
+
+Todo:
+<strong>Add more Skins</strong>
