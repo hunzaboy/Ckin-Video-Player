@@ -1,0 +1,211 @@
+/*!
+   ckin v0.0.1: Custom HTML5 Video Player Skins.
+   (c) 2017 
+   MIT License
+   git+https://github.com/hunzaboy/ckin.git
+*/
+@font-face {
+  font-family: 'ckin';
+  src: url("../fonts/ckin.eot?syr8c5");
+  src: url("../fonts/ckin.eot?syr8c5#iefix") format("embedded-opentype"), url("../fonts/ckin.ttf?syr8c5") format("truetype"), url("../fonts/ckin.woff?syr8c5") format("woff"), url("../fonts/ckin.svg?syr8c5#ckin") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ckin-"],
+[class*=" ckin-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ckin' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ckin-play:before {
+  content: "\ea1c";
+}
+
+.ckin-pause:before {
+  content: "\ea1d";
+}
+
+.ckin-stop:before {
+  content: "\ea1e";
+}
+
+.ckin-backward:before {
+  content: "\ea1f";
+}
+
+.ckin-forward:before {
+  content: "\ea20";
+}
+
+.ckin-unmute:before {
+  content: "\ea28";
+}
+
+.ckin-mute:before {
+  content: "\ea2a";
+}
+
+video {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.ckin-player {
+  border: 0 solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  font-size: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ckin-player:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  border-radius: 5px;
+  transition: opacity .2s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.ckin-player__button {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: #00CF7D;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  -ms-flex-pack: center;
+      justify-content: center;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ckin-player__button i {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.ckin-player__button--big {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: #00CF7D;
+  text-align: center;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  opacity: 1;
+  visibility: visible;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  font-size: 64px;
+  transition: all .2s;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+.ckin-player__slider {
+  width: 10px;
+  height: 30px;
+}
+
+.ckin-player__controls {
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: all .3s;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  font-size: 32px;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 10px;
+  -ms-transform: translateY(0);
+      transform: translateY(0);
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  border-radius: 0 0 5px 5px;
+}
+
+.ckin-player.is-playing:before {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ckin-player.is-playing .ckin-player__button--big {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ckin-player.is-playing .ckin-player__controls {
+  -ms-transform: translateY(52px);
+      transform: translateY(52px);
+}
+
+.ckin-player.is-playing:hover .ckin-player__controls {
+  -ms-transform: translateY(0);
+      transform: translateY(0);
+}
+
+.ckin-player__controls > * {
+  -ms-flex: 1;
+      flex: 1;
+}
+
+.ckin-player .progress {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+  height: 10px;
+  transition: height 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.ckin-player .progress__filled {
+  width: 0%;
+  background: #00CF7D;
+  -ms-flex: 0;
+      flex: 0;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  border-radius: 4px;
+}
+
+/* unholy css to style input type="range" */
+@media (max-width: 480px) {
+  .progress {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+  }
+}

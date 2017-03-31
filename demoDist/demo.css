@@ -1,0 +1,219 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css");
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+html,
+body {
+  min-height: 100%;
+  font-size: 14px;
+  font-family: 'Permanent Marker', cursive;
+}
+
+body {
+  padding-top: 55px;
+  background: #fff;
+}
+
+p {
+  color: gray;
+}
+
+a {
+  color: #00CF7D;
+  text-decoration: none;
+}
+
+.tr {
+  text-align: right;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: normal;
+  margin: 0;
+}
+
+.nav {
+  width: 100%;
+  background: #00955E;
+  z-index: 1010;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav__brand {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.nav__logo {
+  max-width: 64px;
+  margin-right: 10px;
+}
+
+.nav__container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  position: relative;
+}
+
+.nav__title {
+  margin: 0;
+  color: #00CF7D;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav__menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav__item {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.nav__link {
+  display: block;
+  height: 55px;
+  line-height: 51px;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: #00CF7D;
+}
+
+.nav__link--active {
+  color: #fff;
+  border-bottom-color: #00CF7D;
+}
+
+.nav__github {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  transition: color 0.5s ease;
+}
+
+.nav__github svg {
+  display: block;
+  width: 20px;
+  fill: #fff;
+  margin-right: 10px;
+  transition: fill 0.5s ease;
+}
+
+.nav__github:hover {
+  color: #00CF7D;
+}
+
+.nav__github:hover svg {
+  fill: #00CF7D;
+}
+
+.title {
+  text-align: center;
+  color: #00CF7D;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.title a {
+  color: #00955E;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+.title a:hover {
+  color: #B83B5E;
+}
+
+.hello {
+  background-color: #00955E;
+  padding: 55px 0;
+}
+
+.hello__container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+
+.hello__ .hello__logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 200px;
+}
+
+.demo-section {
+  padding: 40px 0;
+}
+
+.demo-section--light {
+  background: #f8f8f8;
+}
+
+.demo-section__heading {
+  text-align: center;
+  color: #00955E;
+}
+
+.demo-list {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0;
+  text-align: center;
+}
+
+.demo-list__item {
+  display: inline-block;
+  margin: 3px;
+}
+
+.demo-list__link {
+  display: block;
+  text-decoration: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background: #00955E;
+  border-radius: 5px;
+  font-size: 13px;
+}
