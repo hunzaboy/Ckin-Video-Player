@@ -136,26 +136,51 @@ obj.browserVersion = obj.browserInfo[1];
 
 wrapPlayers();
 /* Get Our Elements */
-var players = document.querySelectorAll('.ckin-player');
+var players = document.querySelectorAll('.ckin__player');
+
 var iconPlay = '<i class="ckin-play"></i>';
 var iconPause = '<i class="ckin-pause"></i>';
-var iconMute = '<i class="ckin-mute"></i>';
-var iconUnMute = '<i class="ckin-unmute"></i>';
+var iconVolumeMute = '<i class="ckin-volume-mute"></i>';
+var iconVolumeMedium = '<i class="ckin-volume-medium"></i>';
+var iconVolumeLow = '<i class="ckin-volume-low"></i>';
+var iconExpand = '<i class="ckin-expand"></i>';
+var iconCompress = '<i class="ckin-compress"></i>';
+
+// var iconPlay = '<i class="typcn typcn-media-play"></i>';
+// var iconPause = '<i class="typcn typcn-media-pause"></i>';
+// var iconVolumeMute = '<i class="typcn typcn-volume-mute"></i>';
+// var iconVolumeMedium = '<i class="typcn typcn-volume-up"></i>';
+// var iconVolumeLow = '<i class="typcn typcn-volume-down"></i>';
+
 
 players.forEach(function (player) {
-    var html = buildControls();
-    player.insertAdjacentHTML('beforeend', html);
     var video = player.querySelector('video');
+
     var skin = attachSkin(video.dataset.ckin);
     player.classList.add(skin);
 
-    var playerControls = player.querySelector('.ckin-player__controls');
+    var overlay = video.dataset.overlay;
+    addOverlay(player, overlay);
+
+    var title = showTitle(skin, video.dataset.title);
+    if (title) {
+        player.insertAdjacentHTML('beforeend', title);
+    }
+
+    var html = buildControls(skin);
+    player.insertAdjacentHTML('beforeend', html);
+
+    var color = video.dataset.color;
+    addColor(player, color);
+
+    var playerControls = player.querySelector('.' + skin + '__controls');
     var progress = player.querySelector('.progress');;
     var progressBar = player.querySelector('.progress__filled');
     var toggle = player.querySelectorAll('.toggle');
     var skipButtons = player.querySelectorAll('[data-skip]');
-    var ranges = player.querySelectorAll('.ckin-player__slider');
+    var ranges = player.querySelectorAll('.' + skin + '__slider');
     var volumeButton = player.querySelector('.volume');
+    var fullScreenButton = player.querySelector('.fullscreen');
 
     if (obj.browserName === "IE" && (obj.browserVersion === 8 || obj.browserVersion === 9)) {
         showControls(video);
@@ -198,6 +223,12 @@ players.forEach(function (player) {
     progress.addEventListener('mouseup', function () {
         return mousedown = false;
     });
+    fullScreenButton.addEventListener('click', function (e) {
+        return toggleFullScreen(player, fullScreenButton);
+    });
+    addListenerMulti(player, 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function (e) {
+        return onFullScreen(e, player);
+    });
 });
 
 function showControls(video) {
@@ -223,8 +254,26 @@ function skip() {
 }
 
 function toggleVolume(video, volumeButton) {
-    var level = video.volume ? '0' : '1';
-    var icon = video.volume ? iconMute : iconUnMute;
+    // var level = video.volume ? '0' : '0.5';
+    var level = video.volume;
+    var icon = iconVolumeMedium;
+
+    // if (level == 1) {
+    //     level = 0;
+    // } else {
+    //     level = level + .25;
+    // }
+
+    if (level == 1) {
+        level = 0;
+        icon = iconVolumeMute;
+    } else if (level == 0.5) {
+        level = 1;
+        icon = iconVolumeMedium;
+    } else {
+        level = 0.5;
+        icon = iconVolumeLow;
+    }
     video['volume'] = level;
     volumeButton.innerHTML = icon;
 }
@@ -251,7 +300,7 @@ function wrapPlayers() {
 
         // create wrapper container
         var wrapper = document.createElement('div');
-        wrapper.classList.add('ckin-player');
+        wrapper.classList.add('ckin__player');
 
         // insert wrapper before video in the DOM tree
         video.parentNode.insertBefore(wrapper, video);
@@ -261,14 +310,14 @@ function wrapPlayers() {
     });
 }
 
-function buildControls() {
+function buildControls(skin) {
     // Create html array
     var html = [];
-    html.push('<button class="ckin-player__button--big toggle" title="Toggle Play">' + iconPlay + '</button>');
+    html.push('<button class="' + skin + '__button--big toggle" title="Toggle Play">' + iconPlay + '</button>');
 
-    html.push('<div class="ckin-player__controls">');
+    html.push('<div class="' + skin + '__controls ckin__controls">');
 
-    html.push('<button class="ckin-player__button toggle" title="Toggle Video">' + iconPlay + '</button>', '<div class="progress">', '<div class="progress__filled"></div>', '</div>', '<button class="ckin-player__button volume" title="Volume">' + iconUnMute + '</button>');
+    html.push('<button class="' + skin + '__button toggle" title="Toggle Video">' + iconPlay + '</button>', '<div class="progress">', '<div class="progress__filled"></div>', '</div>', '<button class="' + skin + '__button volume" title="Volume">' + iconVolumeMedium + '</button>', '<button class="' + skin + '__button fullscreen" title="Full Screen">' + iconExpand + '</button>');
 
     html.push('</div>');
 
@@ -280,5 +329,91 @@ function attachSkin(skin) {
         return skin;
     } else {
         return 'default';
+    }
+}
+
+function showTitle(skin, title) {
+    if (typeof title != 'undefined' && title != '') {
+        return '<div class="' + skin + '__title">' + title + '</div>';
+    } else {
+        return false;
+    }
+}
+
+function addOverlay(player, overlay) {
+
+    if (overlay == 1) {
+        player.classList.add('ckin__overlay');
+    } else if (overlay == 2) {
+        player.classList.add('ckin__overlay--2');
+    } else {
+        return;
+    }
+}
+
+function addColor(player, color) {
+    if (typeof color != 'undefined' && color != '') {
+        var buttons = player.querySelectorAll('button');
+        var progress = player.querySelector('.progress__filled');
+        progress.style.background = color;
+        buttons.forEach(function (button) {
+            return button.style.color = color;
+        });
+    }
+}
+
+function toggleFullScreen(player, fullScreenButton) {
+    // let isFullscreen = false;
+    if (!document.fullscreenElement && // alternative standard method
+    !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        player.classList.add('ckin__fullscreen');
+
+        if (player.requestFullscreen) {
+            player.requestFullscreen();
+        } else if (player.mozRequestFullScreen) {
+            player.mozRequestFullScreen(); // Firefox
+        } else if (player.webkitRequestFullscreen) {
+            player.webkitRequestFullscreen(); // Chrome and Safari
+        } else if (player.msRequestFullscreen) {
+            player.msRequestFullscreen();
+        }
+        isFullscreen = true;
+
+        fullScreenButton.innerHTML = iconCompress;
+        // fullScreenButton.classList.remove('icon-fullscreen-alt');
+        // fullScreenButton.classList.add('icon-fullscreen-exit-alt');
+    } else {
+        player.classList.remove('ckin__fullscreen');
+
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        isFullscreen = false;
+        fullScreenButton.innerHTML = iconExpand;
+    }
+}
+
+function onFullScreen(e, player) {
+    var isFullscreenNow = document.webkitFullscreenElement !== null;
+    if (!isFullscreenNow) {
+        player.classList.remove('ckin__fullscreen');
+    }
+}
+
+/* Add one or more listeners to an element
+ ** @param {DOMElement} element - DOM element to add listeners to
+ ** @param {string} eventNames - space separated list of event names, e.g. 'click change'
+ ** @param {Function} listener - function to attach for each event as a listener
+ */
+function addListenerMulti(element, eventNames, listener) {
+    var events = eventNames.split(' ');
+    for (var i = 0, iLen = events.length; i < iLen; i++) {
+        element.addEventListener(events[i], listener, false);
     }
 }

@@ -30,10 +30,10 @@
                     <a href="#demo" class="nav__link">Demo</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#installation" class="nav__link">Installation</a>
+                    <a href="#installation" class="nav__link">Installation & Usage</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#usage" class="nav__link">Usage</a>
+                    <a href="#options" class="nav__link">Options</a>
                 </li>
             </ul>
             <a href="https://github.com/hunzaboy/ckin" class="nav__github">
@@ -44,7 +44,78 @@
             </a>
         </div>
     </nav>
-    
+    <section class="demo-section demo-section--light" id="demo">
+        <div class="container">
+            <h2 class="title heading">Custom HTML5 Video Player with Ckins...</h2>
+            <video poster="ckin.jpg" src="ckin.mp4" data-ckin="default" data-overlay="1" data-title="The curious case of Chameleon..."></video>
+            <p class="tr">Demo video by
+                <a href="#">John Doe</a>
+            </p>
+        </div>
+    </section>
+    <section class="demo-section demo-section--light" id="skins">
+        <div class="container">
+            <h2 class="title heading">Skins</h2>
+            <ul class="demo-list">
+                <li class="demo-list__item">
+                    <p>Default Ckin without overlay</p>
+                    <video poster="ckin.jpg" src="ckin.mp4" data-ckin="default"></video>
+                </li>
+                <li class="demo-list__item">
+                    <p>Minimal Ckin with overlay</p>
+                    <video poster="ckin.jpg" src="ckin.mp4" data-ckin="minimal" data-overlay="1"></video>
+                </li>
+                <li class="demo-list__item">
+                    <p>Compact Ckin with overlay</p>
+                    <video poster="ckin.jpg" src="ckin.mp4" data-ckin="compact" data-overlay="2"></video>
+                </li>
+                <li class="demo-list__item">
+                    <p>Compact Ckin with custom color</p>
+                    <video poster="ckin.jpg" src="ckin.mp4" data-color="#fff000" data-ckin="compact" data-overlay="2"></video>
+                </li>
+                <li class="demo-list__item">
+                    <img src="logo.png" class="nav__logo" alt="Ckin">
+                    <h2 class="coming-soon">More ckins coming soon...</h2>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="demo-section" id="installation">
+        <div class="container">
+            <h2 class="heading demo-section__heading">Installation</h2>
+            <p>1. Add the ckin.css or ckin.min.css to head section to the head of your html page.</p>
+            <code>&lt;link rel="stylesheet" href="dist/css/ckin.css"&gt;<br />&lt;/head&gt;</code>
+            <p>2. Add the ckin.js or ckin.min.js to the bottom of your html page. Just above the closing BODY tag.</p>
+            <code>
+                    &lt;script src="dist/js/ckin.js"&gt;&lt;/script&gt;<br />&lt;/body&gt;
+            </code>
+            <p>3. Add your video element.</p>
+            <code>
+                &lt;video poster="ckin.jpg" src="ckin.mp4" data-overlay="1" data-title="The curious case of Chameleon..."&gt;&lt;/video&gt;
+            </code>
+            <p>Refresh your page. Thats, it. </p>
+            <p>Now all your video elements with automatically change. You dont' have to initiate anything.</p>
+        </div>
+    </section>
+    <section class="demo-section demo-section--light" id="options">
+        <div class="container">
+            <h2 class="heading demo-section__heading">Options</h2>
+            <p>Ckin player comes with many options.</p>
+            <p><strong>data-ckin</strong> will change the ckin. <strong>Options : default, minimum, compact</strong></p>
+            <code>data-ckin="compact"</code>
+            <p><strong>data-color</strong> will change the color of the controls.</p>
+            <code>data-color="#fff000"</code>
+            <p><strong>data-overlay</strong> will add an overlay to your video. <strong>Options: 1, 2</strong></p>
+            <code>data-overlay="2"</code>
+            <p><strong>poster</strong> is added to video cover.</p>
+            <code>poster="video-background-image" </code>
+        </div>
+    </section>
+    <footer>
+        <img src="logo.png" alt="" class="footer-logo">
+        <p><em>Ckin video player.</em></p>
+
+    </footer>
     <script src="dist/js/ckin.js"></script>
 </body>
 

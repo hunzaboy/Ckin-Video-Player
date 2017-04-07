@@ -1,9 +1,19 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 html,
 body {
   min-height: 100%;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: 'Roboto', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: 'Permanent Marker', cursive;
 }
 
@@ -12,8 +22,28 @@ body {
   background: #fff;
 }
 
+code {
+  background: #ddd;
+  padding: 5px;
+  line-height: 1.4;
+  font-size: 12px;
+  border: 1px solid #aaa;
+  font-family: 'Source Code Pro', monospace;
+  display: block;
+}
+
 p {
   color: gray;
+}
+
+strong {
+  letter-spacing: 2px;
+  font-weight: 300;
+  background: #ddd;
+  padding: 5px;
+  border: 1px solid #aaa;
+  font-size: 14px;
+  color: #000;
 }
 
 a {
@@ -200,11 +230,18 @@ a {
   padding: 0;
   margin: 22px 0;
   text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .demo-list__item {
-  display: inline-block;
-  margin: 3px;
+  width: 49%;
 }
 
 .demo-list__link {
@@ -216,4 +253,44 @@ a {
   background: #00955E;
   border-radius: 5px;
   font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .demo-list__item {
+    width: 100%;
+  }
+  .nav {
+    position: static;
+  }
+  body {
+    padding-top: 0;
+  }
+  .nav__container {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: center;
+        align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+  .nav__item {
+    display: block;
+  }
+  .nav__link {
+    height: auto;
+    line-height: 1;
+  }
+}
+
+.coming-soon {
+  color: #00CF7D;
+}
+
+footer {
+  text-align: center;
+}
+
+.footer-logo {
+  height: 200px;
+  margin: 5px auto;
 }
