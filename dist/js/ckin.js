@@ -5,7 +5,7 @@
    git+https://github.com/hunzaboy/ckin.git
 */
 // Source: https://gist.github.com/k-gun/c2ea7c49edf7b757fe9561ba37cb19ca;
-(function() {
+(function () {
     // helpers
     var regExp = function regExp(name) {
         return new RegExp('(^| )' + name + '( |$)');
@@ -23,14 +23,14 @@
 
     ClassList.prototype = {
         add: function add() {
-            forEach(arguments, function(name) {
+            forEach(arguments, function (name) {
                 if (!this.contains(name)) {
                     this.element.className += ' ' + name;
                 }
             }, this);
         },
         remove: function remove() {
-            forEach(arguments, function(name) {
+            forEach(arguments, function (name) {
                 this.element.className = this.element.className.replace(regExp(name), '');
             }, this);
         },
@@ -60,7 +60,7 @@
         DOMTokenList.prototype.replace = ClassList.prototype.replace;
     }
 })();
-(function() {
+(function () {
     if (typeof NodeList.prototype.forEach === "function") return false;
     NodeList.prototype.forEach = Array.prototype.forEach;
 })();
@@ -83,35 +83,35 @@ function browserSniff() {
     }
     // MSIE
     else if ((verOffset = nAgt.indexOf("MSIE")) !== -1) {
-        browserName = "IE";
-        fullVersion = nAgt.substring(verOffset + 5);
-    }
-    // Chrome
-    else if ((verOffset = nAgt.indexOf("Chrome")) !== -1) {
-        browserName = "Chrome";
-        fullVersion = nAgt.substring(verOffset + 7);
-    }
-    // Safari
-    else if ((verOffset = nAgt.indexOf("Safari")) !== -1) {
-        browserName = "Safari";
-        fullVersion = nAgt.substring(verOffset + 7);
-        if ((verOffset = nAgt.indexOf("Version")) !== -1) {
-            fullVersion = nAgt.substring(verOffset + 8);
+            browserName = "IE";
+            fullVersion = nAgt.substring(verOffset + 5);
         }
-    }
-    // Firefox
-    else if ((verOffset = nAgt.indexOf("Firefox")) !== -1) {
-        browserName = "Firefox";
-        fullVersion = nAgt.substring(verOffset + 8);
-    }
-    // In most other browsers, "name/version" is at the end of userAgent
-    else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
-        browserName = nAgt.substring(nameOffset, verOffset);
-        fullVersion = nAgt.substring(verOffset + 1);
-        if (browserName.toLowerCase() == browserName.toUpperCase()) {
-            browserName = navigator.appName;
-        }
-    }
+        // Chrome
+        else if ((verOffset = nAgt.indexOf("Chrome")) !== -1) {
+                browserName = "Chrome";
+                fullVersion = nAgt.substring(verOffset + 7);
+            }
+            // Safari
+            else if ((verOffset = nAgt.indexOf("Safari")) !== -1) {
+                    browserName = "Safari";
+                    fullVersion = nAgt.substring(verOffset + 7);
+                    if ((verOffset = nAgt.indexOf("Version")) !== -1) {
+                        fullVersion = nAgt.substring(verOffset + 8);
+                    }
+                }
+                // Firefox
+                else if ((verOffset = nAgt.indexOf("Firefox")) !== -1) {
+                        browserName = "Firefox";
+                        fullVersion = nAgt.substring(verOffset + 8);
+                    }
+                    // In most other browsers, "name/version" is at the end of userAgent
+                    else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
+                            browserName = nAgt.substring(nameOffset, verOffset);
+                            fullVersion = nAgt.substring(verOffset + 1);
+                            if (browserName.toLowerCase() == browserName.toUpperCase()) {
+                                browserName = navigator.appName;
+                            }
+                        }
     // Trim the fullVersion string at semicolon/space if present
     if ((ix = fullVersion.indexOf(";")) !== -1) {
         fullVersion = fullVersion.substring(0, ix);
@@ -146,7 +146,7 @@ var iconVolumeLow = '<i class="ckin-volume-low"></i>';
 var iconExpand = '<i class="ckin-expand"></i>';
 var iconCompress = '<i class="ckin-compress"></i>';
 
-players.forEach(function(player) {
+players.forEach(function (player) {
     var video = player.querySelector('video');
 
     var skin = attachSkin(video.dataset.ckin);
@@ -180,46 +180,46 @@ players.forEach(function(player) {
         playerControls.style.display = "none";
     }
 
-    video.addEventListener('click', function() {
+    video.addEventListener('click', function () {
         togglePlay(this, player);
     });
-    video.addEventListener('play', function() {
+    video.addEventListener('play', function () {
         updateButton(this, toggle);
     });
 
-    video.addEventListener('pause', function() {
+    video.addEventListener('pause', function () {
         updateButton(this, toggle);
     });
-    video.addEventListener('timeupdate', function() {
+    video.addEventListener('timeupdate', function () {
         handleProgress(this, progressBar);
     });
 
-    toggle.forEach(function(button) {
-        return button.addEventListener('click', function() {
+    toggle.forEach(function (button) {
+        return button.addEventListener('click', function () {
             togglePlay(video, player);
         });
     });
-    volumeButton.addEventListener('click', function() {
+    volumeButton.addEventListener('click', function () {
         toggleVolume(video, volumeButton);
     });
 
     var mousedown = false;
-    progress.addEventListener('click', function(e) {
+    progress.addEventListener('click', function (e) {
         scrub(e, video, progress);
     });
-    progress.addEventListener('mousemove', function(e) {
+    progress.addEventListener('mousemove', function (e) {
         return mousedown && scrub(e, video, progress);
     });
-    progress.addEventListener('mousedown', function() {
+    progress.addEventListener('mousedown', function () {
         return mousedown = true;
     });
-    progress.addEventListener('mouseup', function() {
+    progress.addEventListener('mouseup', function () {
         return mousedown = false;
     });
-    fullScreenButton.addEventListener('click', function(e) {
+    fullScreenButton.addEventListener('click', function (e) {
         return toggleFullScreen(player, fullScreenButton);
     });
-    addListenerMulti(player, 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function(e) {
+    addListenerMulti(player, 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function (e) {
         return onFullScreen(e, player);
     });
 });
@@ -237,7 +237,7 @@ function togglePlay(video, player) {
 
 function updateButton(video, toggle) {
     var icon = video.paused ? iconPlay : iconPause;
-    toggle.forEach(function(button) {
+    toggle.forEach(function (button) {
         return button.innerHTML = icon;
     });
 }
@@ -281,7 +281,7 @@ function wrapPlayers() {
 
     var videos = document.querySelectorAll('video');
 
-    videos.forEach(function(video) {
+    videos.forEach(function (video) {
 
         var wrapper = document.createElement('div');
         wrapper.classList.add('ckin__player');
@@ -337,14 +337,16 @@ function addColor(player, color) {
         var buttons = player.querySelectorAll('button');
         var progress = player.querySelector('.progress__filled');
         progress.style.background = color;
-        buttons.forEach(function(button) {
+        buttons.forEach(function (button) {
             return button.style.color = color;
         });
     }
 }
 
 function toggleFullScreen(player, fullScreenButton) {
-    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+    // let isFullscreen = false;
+    if (!document.fullscreenElement && // alternative standard method
+    !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
         player.classList.add('ckin__fullscreen');
 
         if (player.requestFullscreen) {
@@ -380,6 +382,10 @@ function onFullScreen(e, player) {
     var isFullscreenNow = document.webkitFullscreenElement !== null;
     if (!isFullscreenNow) {
         player.classList.remove('ckin__fullscreen');
+        player.querySelector('.fullscreen').innerHTML = iconExpand;
+    } else {
+        // player.querySelector('.fullscreen').innerHTML = iconExpand;
+
     }
 }
 
