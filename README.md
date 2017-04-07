@@ -1,5 +1,5 @@
 # ckin
-Custom HTML5 Video Player with Skins.
+An opensource <strong>lightweight</strong> HTML5 Video Player using Javascript (No jQuery).
 
 If you find any bug, please report.
 
