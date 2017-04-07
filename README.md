@@ -1,11 +1,10 @@
 # ckin
-Custom HTML5 Video Player Skins
-
-Development in Progress...
+Custom HTML5 Video Player with Skins.
 
 If you find any bug, please report.
 
-P.S "This is my first github project"
+
 
 Todo:
 <strong>Add more Skins</strong>
+
