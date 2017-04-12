@@ -94,14 +94,17 @@ gulp.task('fonts', function() {
 gulp.task('demo-css', function() {
   gulp.src(paths.demoStyles.input)
   .pipe(plumber())
-  .pipe(sass({
-    outputStyle: 'expanded'
-  }))
+  .pipe(sass())
   .pipe(flatten())
   .pipe(autoprefixer({
     browsers: ['last 3 version'],
     cascade: true,
     remove: true
+  }))
+  .pipe(cssnano({
+    discardComments: {
+      removeAll: true
+    }
   }))
   .pipe(gulp.dest(paths.demoStyles.output))
   .pipe(connect.reload());
