@@ -167,7 +167,7 @@ players.forEach(function (player) {
     addColor(player, color);
 
     var playerControls = player.querySelector('.' + skin + '__controls');
-    var progress = player.querySelector('.progress');;
+    var progress = player.querySelector('.progress');
     var progressBar = player.querySelector('.progress__filled');
     var toggle = player.querySelectorAll('.toggle');
     var skipButtons = player.querySelectorAll('[data-skip]');
